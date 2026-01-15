@@ -3,6 +3,7 @@ name: Publish Documentation
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -19,11 +20,11 @@ jobs:
       - uses: astral-sh/setup-uv@v7
         with:
           # Install a specific version of uv.
-          version: "0.9.17"
+          version: "0.9.24"
           enable-cache: true
       # Install OS dependencies 
       - name: Fetch OS updates and upgrade packages
-        run: sudo apt-get update && sudo apt-get upgrade -y
+        run: sudo apt-get update
         ## For the following line, do we need these packages for docs build?
         ## Should we update to Qt6 libraries?
       - name: Install OS dependencies 

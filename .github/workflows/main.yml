@@ -5,6 +5,7 @@ on:
     branches: [main, "stable/*"]
   pull_request:
     branches: [main, "stable/*"]
+  workflow_dispatch:
   
 jobs:
   # OLD NOTE: The ubuntu-24.04 and macos-latest tests have been separated out because ubuntu
@@ -39,13 +40,13 @@ jobs:
       - uses: astral-sh/setup-uv@v7
         with:
           # Install a specific version of uv.
-          version: "0.9.17"
+          version: "0.9.24"
           enable-cache: true
       # Install OS dependencies 
       - name: Install Gmsh dependencies for Ubuntu
         if: ${{ startsWith(matrix.os, 'ubuntu-') }}
         run: |
-          sudo apt-get update && sudo apt-get upgrade -y
+          sudo apt-get update
           sudo apt-get install -y libglu1-mesa libglu1-mesa-dev libegl1-mesa-dev
       - name: Run Tests
         run: uvx --with tox-uv tox -vv -e py

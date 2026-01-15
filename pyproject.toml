@@ -2,7 +2,10 @@
     name = "quantum-metal"
     description = "Quantum Metal (formerly Qiskit Metal) | for quantum device design & analysis"
     authors = [
-        { name = "Qiskit Metal Development Team", email = "qiskit@us.ibm.com" },
+        { name = "Zlatko Minev" },
+        { name = "Thomas McConkey" },
+        { name = "IBM Quantum Team" },
+        { name = "Quantum Device Consortium (QDC)" },
     ]
     classifiers = [
         "Intended Audience :: Developers",
@@ -26,49 +29,47 @@
     version = "0.5.2.post4"
     dependencies = [
         "addict>=2.4.0",
-        "gdstk~=0.9",
-        "geopandas>=0.12.2",
-        "matplotlib~=3.7.0",
+        "gdstk>=0.9",
+        "geopandas>=1.0",
+        "matplotlib>=3.7.0",
         "numpy>=1.24.2,<2",
-        "pandas==1.5.3",
-        "pint~=0.20",
+        "pandas>=2.1.1",
+        "pint>=0.21.0",
         "pyEPR-quantum>=0.9.0",
-        "pygments~=2.14",
-        "pyside6~=6.8",
-        "qdarkstyle~=3.1",
-        "qutip~=4.7.1",
+        "pygments>=2.14.0", # Needed for docs and GUI widgets.
+        "pyside6>=6.8",
+        "qdarkstyle>=3.1", # Needed for GUI styling.
+        "qutip>=5.0.0",
         "scipy>=1.10.0",
-        "shapely~=2.0.1",
-        "scqubits~=3.1.0",
-        "gmsh~=4.11.1",
-        "pyaedt~=0.21",
-        "pyyaml~=6.0",
-        "cython<3.0.0",
-        "descartes~=1.1.0",
+        "shapely>=2.0.1",
+        "scqubits>=4.1.0",
+        "gmsh>=4.11.1",
+        "pyaedt>=0.21",
+        "pyyaml>=6.0", # Used for the Elmer runner. 
     ]
 
 [build-system]
-    requires      = [ "uv_build>=0.9.17,<0.10.0" ]
+    requires      = [ "uv_build>=0.9.23,<0.10.0" ]
     build-backend = "uv_build"
 
-# Accounting for flat layout
+# Accounting for old package name
 [tool.uv.build-backend]
     module-name = "qiskit_metal"
-    module-root = ""
 
 [dependency-groups]
     jupyter = [
- "ipywidgets>=8.1.8",
- "jupyter>=1.0.0",
- "jupyterlab>=3.6.1",
+        "ipympl>=0.9.8",
+        "ipywidgets>=8.1.8",
+        "jupyter>=1.0.0",
+        "jupyterlab>=3.6.1",
 ]
     docs = [
-        "nbsphinx>=0.8.6",
+        "nbsphinx>=0.9.8",
         "numpydoc>=1.5.0",
-        "qiskit-sphinx-theme>=1.16.0",
-        "sphinx>=6.0.0",
-        "sphinx-intl~=2.1.0",
-        "sphinx-design~=0.6.0",
+        "qiskit-sphinx-theme>=2.0.0",
+        "sphinx>=8.0",
+        "sphinx-intl>=2.1.0",
+        "sphinx-design>=0.6.0",
         "sphinx-autobuild>=2024.10.3",
 ]
     lint = [ "ruff>=0.14.2" ]
@@ -82,7 +83,7 @@
 [tool.pytest.ini_options]
     minversion = "6.0"
     addopts    = "--rich"
-    testpaths  = [ "qiskit_metal/tests/" ]
+    testpaths  = [ "tests/" ]
 
 
 [tool.ruff.lint]

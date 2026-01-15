@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "*"           # consider 'v*' if you only want version tags
+  workflow_dispatch:
 
 jobs:
   wheel-build:
@@ -27,7 +28,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
         with:
           # optional but nice to pin
-          version: "0.9.17"
+          version: "0.9.24"
           enable-cache: true
 
       - name: Build distributions
@@ -35,7 +36,7 @@ jobs:
 
       - name: Install additional dependencies for testing
         run: |
-           sudo apt-get update && sudo apt-get upgrade -y
+           sudo apt-get update
            sudo apt-get install -y libglu1-mesa libglu1-mesa-dev libegl1-mesa-dev
       # Optional: simple sanity check that the built dists are valid
       - name: Check distributions with twine
